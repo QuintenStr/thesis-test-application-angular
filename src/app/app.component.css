@@ -1,0 +1,27 @@
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.sidebar {
+    background-image: linear-gradient(180deg, #8d0005 0%, #470639 70%);
+    z-index: 999;
+}
+
+@media (min-width: 641px) {
+    .page {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: auto;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+}

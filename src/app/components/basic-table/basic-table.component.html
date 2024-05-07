@@ -1,0 +1,223 @@
+<form>
+  <div class="mb-3 row">
+    <label
+      for="table-complete-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Full text search:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <input
+        id="table-complete-search"
+        type="text"
+        class="form-control"
+        name="searchTerm"
+        [(ngModel)]="service.searchTerm"
+      />
+    </div>
+    @if (service.loading$ | async) {
+    <span class="col col-form-label">Loading...</span>
+    }
+  </div>
+
+  <div class="table-responsive rounded shadow-lg mb-3" style="max-height: 90vh">
+    <table class="table table-sm table-striped table-hover mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Username</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Email</th>
+          <th scope="col">PhoneNumber</th>
+          <th scope="col">Country</th>
+          <th scope="col">State</th>
+          <th scope="col">City</th>
+          <th scope="col">PostalCode</th>
+          <th scope="col">StreetAddress</th>
+          <th scope="col">Password</th>
+          <th scope="col">SecurityQuestion1</th>
+          <th scope="col">SecurityAnswer1</th>
+          <th scope="col">SecurityQuestion2</th>
+          <th scope="col">SecurityAnswer2</th>
+          <th scope="col">DeviceType</th>
+          <th scope="col">DeviceBrand</th>
+          <th scope="col">DeviceModel</th>
+          <th scope="col">DeviceOs</th>
+          <th scope="col">LastLogin</th>
+          <th scope="col">AccountCreated</th>
+          <th scope="col">TwoFactorEnabled</th>
+          <th scope="col">LastIpAddress</th>
+          <th scope="col">LoginAttempts</th>
+          <th scope="col">AccountLocked</th>
+          <th scope="col">PasswordLastChanged</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (person of persons$ | async; track person.id) {
+        <tr class="customrow">
+          <th scope="row">{{ person.id }}</th>
+          <td>
+            <ngb-highlight
+              [result]="person.username"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.firstName"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.lastName"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.email"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.phoneNumber"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.country"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight [result]="person.city" [term]="service.searchTerm" />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.state"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.postalCode"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.streetAddress"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.password"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.securityQuestion1"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.securityAnswer1"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.securityQuestion2"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.securityAnswer2"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.deviceType"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.deviceBrand"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.deviceModel"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.deviceOs"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.lastLogin | date : 'medium'"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.accountCreated | date : 'medium'"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.twoFactorEnabled ? 'True' : 'False'"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.lastIpAddress"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.loginAttempts | number"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.accountLocked ? 'True' : 'False'"
+              [term]="service.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="person.passwordLastChanged | date : 'medium'"
+              [term]="service.searchTerm"
+            />
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="27" style="text-align: left" class="ps-5">
+            No search results
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</form>
